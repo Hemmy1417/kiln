@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+/* ── Kiln · Binance dark-financial design system ────────────────────────────
+   Near-black canvas, the iconic yellow on every CTA and value moment,
+   graphite cards, trading green/red as state signals. Token names are
+   inherited from the shared component library and remapped:
+     --navy*  → near-black canvas + graphite surfaces
+     --gold*  → Binance yellow
+     --ivory* → light body text (dark theme)                                  */
+:root {
+  --navy:         #0b0e11;   /* canvas */
+  --navy-deep:    #06080a;   /* recessed */
+  --navy-mid:     #1e2329;   /* card surface */
+  --gold:         #f0b90b;   /* yellow (active) */
+  --gold-bright:  #fcd535;   /* yellow (primary) */
+  --gold-soft:    #8a6d0a;   /* dim yellow */
+  --ivory:        #eaecef;   /* body-strong */
+  --ivory-soft:   #b7bdc6;   /* body */
+  --muted:        #707a8a;
+  --hairline:     #2b3139;
+  --hairline-soft:#22262c;
+  --success:      #0ecb81;   /* trading up — CLEAR / approved / sold */
+  --danger:       #f6465d;   /* trading down — FROZEN / rejected */
+
+  --background:   var(--navy);
+  --foreground:   var(--ivory);
+}
+
+@theme inline {
+  --color-navy:         var(--navy);
+  --color-navy-deep:    var(--navy-deep);
+  --color-navy-mid:     var(--navy-mid);
+  --color-gold:         var(--gold);
+  --color-gold-bright:  var(--gold-bright);
+  --color-gold-soft:    var(--gold-soft);
+  --color-ivory:        var(--ivory);
+  --color-ivory-soft:   var(--ivory-soft);
+  --color-muted:        var(--muted);
+  --color-hairline:     var(--hairline);
+  --color-success:      var(--success);
+  --color-danger:       var(--danger);
+  --color-background:   var(--navy);
+  --color-foreground:   var(--ivory);
+}
+
+@layer base {
+  * { border-color: var(--hairline); }
+  html, body { background: var(--navy); color: var(--ivory-soft); }
+  body {
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-feature-settings: "ss01" 1, "cv11" 1, "tnum" 1;
+  }
+  /* BinanceNova substitute: Inter 600-700, tight tracking, trusts size +
+     yellow voltage over extra weight. */
+  h1, h2, h3, h4, h5, h6,
+  .display {
+    font-family: var(--font-inter), sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ivory);
+  }
+  .mono {
+    font-family: var(--font-mono), "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    letter-spacing: 0.01em;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+}
+
+@layer utilities {
+  .card {
+    background: var(--navy-mid);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+  }
+  .card-strong {
+    background: #2b3139;
+    border: 1px solid #3a414b;
+    border-radius: 8px;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 0.5rem;
+    padding: 10px 18px;
+    height: 42px;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  /* Primary CTA — the iconic yellow with near-black ink */
+  .btn-gold {
+    background: var(--gold-bright);
+    color: #181a20;
+    border-color: var(--gold-bright);
+  }
+  .btn-gold:hover:not(:disabled) {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ivory);
+    border-color: var(--hairline);
+  }
+  .btn-ghost:hover:not(:disabled) {
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+  }
+
+  .btn-danger {
+    background: transparent;
+    color: var(--danger);
+    border-color: rgba(246, 70, 93, 0.4);
+  }
+  .btn-danger:hover:not(:disabled) {
+    background: rgba(246, 70, 93, 0.08);
+    border-color: var(--danger);
+  }
+
+  .input {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--navy-deep);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    color: var(--ivory);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.15s ease;
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--gold-bright);
+  }
+  .input::placeholder { color: #5a6472; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+  }
+  .chip-approved { background: rgba(14, 203, 129, 0.10); color: var(--success); border-color: rgba(14, 203, 129, 0.3); }
+  .chip-clear    { background: rgba(14, 203, 129, 0.10); color: var(--success); border-color: rgba(14, 203, 129, 0.3); }
+  .chip-watch    { background: rgba(252, 213, 53, 0.10); color: var(--gold-bright); border-color: rgba(252, 213, 53, 0.3); }
+  .chip-pending  { background: rgba(252, 213, 53, 0.10); color: var(--gold-bright); border-color: rgba(252, 213, 53, 0.3); }
+  .chip-rejected { background: rgba(246, 70, 93, 0.10);  color: var(--danger); border-color: rgba(246, 70, 93, 0.3); }
+  .chip-frozen   { background: rgba(246, 70, 93, 0.10);  color: var(--danger); border-color: rgba(246, 70, 93, 0.3); }
+  .chip-muted    { background: rgba(112, 122, 138, 0.10); color: var(--muted); border-color: rgba(112, 122, 138, 0.3); }
+
+  .hairline {
+    height: 1px;
+    background: var(--hairline);
+  }
+
+  /* Price direction text */
+  .up   { color: var(--success); }
+  .down { color: var(--danger); }
+
+  .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0);   }
+  }
+
+  .animate-slide-in { animation: slideIn 0.28s cubic-bezier(0.32, 0.72, 0.32, 1) forwards; }
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0);    }
+  }
+}
