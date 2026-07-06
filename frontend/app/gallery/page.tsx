@@ -3,18 +3,20 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Loader2, Images, Tag, Send, X } from "lucide-react";
-import { useMyTokens, useCollections, useListToken, useDelistToken, useTransferToken, useListing } from "@/lib/hooks/useKiln";
+import { useMyTokens, useCollections, useListToken, useDelistToken, useTransferToken, useListings } from "@/lib/hooks/useKiln";
 import { useWallet } from "@/lib/genlayer/wallet";
 import { parseGen } from "@/lib/utils";
 import { TokenCard } from "@/components/TokenCard";
 import { error as toastError } from "@/lib/toast";
-import type { Token } from "@/lib/contracts/types";
+import type { Token, Listing } from "@/lib/contracts/types";
 
 export default function GalleryPage() {
   const { isConnected } = useWallet();
   const { data: tokens, isLoading } = useMyTokens();
   const { data: collections } = useCollections(50);
+  const { data: allListings } = useListings(100);
   const titles = new Map((collections ?? []).map((c) => [c.collection_id, c.title]));
+  const listingByToken = new Map((allListings ?? []).map((l) => [l.token_id, l]));
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-12 space-y-8">
@@ -41,7 +43,8 @@ export default function GalleryPage() {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {(tokens ?? []).map((t) => (
-            <OwnedToken key={t.token_id} token={t} title={titles.get(t.collection_id)} />
+            <OwnedToken key={t.token_id} token={t} title={titles.get(t.collection_id)}
+                        listing={listingByToken.get(t.token_id) ?? null} />
           ))}
         </div>
       )}
@@ -49,8 +52,7 @@ export default function GalleryPage() {
   );
 }
 
-function OwnedToken({ token, title }: { token: Token; title?: string }) {
-  const { data: listing } = useListing(token.token_id);
+function OwnedToken({ token, title, listing }: { token: Token; title?: string; listing: Listing | null }) {
   const { listToken, isListing } = useListToken();
   const { delistToken, isDelisting } = useDelistToken();
   const { transferToken, isTransferring } = useTransferToken();

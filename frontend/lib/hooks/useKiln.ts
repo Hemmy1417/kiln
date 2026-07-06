@@ -20,7 +20,13 @@ export function useKilnContract(): Kiln | null {
 
 // ── READ HOOKS ──────────────────────────────────────────────────────────────
 
-const READ_DEFAULTS = { refetchOnWindowFocus: true, staleTime: 3000 } as const;
+// Studionet rate-limits the RPC at 500 requests/hour. Long stale time, no
+// focus refetch, single retry — mutations invalidate what matters anyway.
+const READ_DEFAULTS = {
+  refetchOnWindowFocus: false,
+  staleTime: 60_000,
+  retry: 1,
+} as const;
 
 export function useProtocolStats() {
   const contract = useKilnContract();
