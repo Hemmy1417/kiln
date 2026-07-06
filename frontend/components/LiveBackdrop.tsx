@@ -31,7 +31,7 @@ export function LiveBackdrop() {
           [1120, 230, 60, 40, 1], [1210, 190, 50, 50, 1], [1300, 210, 40, 70, 0],
           [1390, 160, 70, 40, 1], [1480, 240, 50, 30, 0],
         ].map(([x, y, body, wick, up], i) => {
-          const color = up ? "#0ecb81" : "#f6465d";
+          const color = up ? "#34c77b" : "#e5484d";
           return (
             <g key={i} opacity="0.5">
               <line x1={x + 8} y1={y - wick} x2={x + 8} y2={y + body + wick} stroke={color} strokeWidth="1.5" />
@@ -47,7 +47,7 @@ export function LiveBackdrop() {
           [980, 240, 30, 40, 0], [1130, 190, 70, 50, 1], [1280, 220, 40, 60, 0],
           [1430, 170, 80, 40, 1],
         ].map(([x, y, body, wick, up], i) => {
-          const color = up ? "#0ecb81" : "#f6465d";
+          const color = up ? "#34c77b" : "#e5484d";
           return (
             <g key={i} opacity="0.7">
               <line x1={x + 11} y1={y - wick} x2={x + 11} y2={y + body + wick} stroke={color} strokeWidth="2" />
@@ -91,10 +91,10 @@ export function LiveBackdrop() {
           position: absolute; inset: 0;
           background:
             radial-gradient(ellipse 60% 40% at 50% 0%,
-              rgba(252, 213, 53, 0.07) 0%, transparent 60%),
+              rgba(32, 129, 226, 0.07) 0%, transparent 60%),
             radial-gradient(ellipse 90% 70% at 50% 100%,
               rgba(6, 8, 10, 0.9) 0%, transparent 60%),
-            #0b0e11;
+            #0d0e12;
         }
 
         .kl-grid {
@@ -140,10 +140,10 @@ export function LiveBackdrop() {
           background: linear-gradient(160deg,
             rgba(30, 35, 41, 0.85) 0%,
             rgba(20, 24, 29, 0.9) 100%);
-          border: 1px solid rgba(252, 213, 53, 0.25);
+          border: 1px solid rgba(32, 129, 226, 0.25);
           box-shadow:
-            0 0 28px rgba(252, 213, 53, 0.06),
-            inset 0 1px 0 rgba(252, 213, 53, 0.12);
+            0 0 28px rgba(32, 129, 226, 0.06),
+            inset 0 1px 0 rgba(32, 129, 226, 0.12);
           overflow: hidden;
           padding: 10px;
           display: flex;
@@ -158,10 +158,10 @@ export function LiveBackdrop() {
           border-radius: 6px;
           background:
             conic-gradient(from 210deg at 60% 40%,
-              rgba(252, 213, 53, 0.35),
-              rgba(14, 203, 129, 0.25),
-              rgba(246, 70, 93, 0.2),
-              rgba(252, 213, 53, 0.35));
+              rgba(32, 129, 226, 0.35),
+              rgba(52, 199, 123, 0.25),
+              rgba(229, 72, 77, 0.2),
+              rgba(32, 129, 226, 0.35));
           filter: saturate(1.2);
         }
         .kl-card-line {
@@ -170,7 +170,7 @@ export function LiveBackdrop() {
           border-radius: 3px;
           background: rgba(234, 236, 239, 0.16);
         }
-        .kl-card-line-short { width: 40%; background: rgba(252, 213, 53, 0.3); }
+        .kl-card-line-short { width: 40%; background: rgba(32, 129, 226, 0.3); }
         .kl-shimmer {
           position: absolute; inset: 0;
           background: linear-gradient(115deg,
@@ -199,9 +199,9 @@ export function LiveBackdrop() {
         .kl-glint {
           position: absolute;
           width: 10px; height: 10px;
-          background: #fcd535;
+          background: #2081e2;
           clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-          filter: drop-shadow(0 0 6px rgba(252, 213, 53, 0.8));
+          filter: drop-shadow(0 0 6px rgba(32, 129, 226, 0.8));
           animation: klGlint ease-in-out infinite;
         }
         @keyframes klGlint {
@@ -242,7 +242,7 @@ export function LiveBackdrop() {
           font-family: ui-monospace, monospace;
           font-size: 10px;
           letter-spacing: 0.22em;
-          color: rgba(252, 213, 53, 0.35);
+          color: rgba(32, 129, 226, 0.35);
           text-transform: uppercase;
         }
         @keyframes klMarquee {
@@ -255,7 +255,7 @@ export function LiveBackdrop() {
           position: absolute; inset: 0;
           background: linear-gradient(105deg,
             transparent 0%, transparent 44%,
-            rgba(252, 213, 53, 0.04) 50%,
+            rgba(32, 129, 226, 0.04) 50%,
             transparent 56%, transparent 100%);
           background-size: 260% 100%;
           animation: klSweep 20s linear infinite;

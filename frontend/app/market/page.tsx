@@ -56,43 +56,31 @@ export default function MarketPage() {
             // edition lives on the token; derive from token_id ordering is not
             // possible client-side, so show the token id as the edition label.
             return (
-              <div key={l.token_id} className="space-y-2">
-                <Link href={`/collections/${l.collection_id}`} className="block">
-                  <TokenCard
-                    collectionId={l.collection_id}
-                    edition={Number(l.token_id)}
-                    title={coll?.title}
-                    priceWei={l.price_wei}
-                    priceLabel="Ask"
-                    dimmed={frozen}
-                    footer={
-                      coll && (
-                        <span className={`chip mt-1 ${
-                          coll.risk_state === "CLEAR" ? "chip-clear" :
-                          coll.risk_state === "WATCH" ? "chip-watch" : "chip-frozen"
-                        }`}>
-                          {coll.risk_state}
-                        </span>
-                      )
-                    }
-                  />
-                </Link>
-                <button
-                  className="btn btn-gold w-full !h-9 text-xs"
-                  disabled={!isConnected || isBuying || frozen || mine}
-                  onClick={() => buyToken({ tokenId: l.token_id, priceWei: BigInt(l.price_wei) })}
-                >
-                  {isBuying ? (
-                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                  ) : frozen ? (
-                    "Frozen"
-                  ) : mine ? (
-                    "Your listing"
-                  ) : (
-                    `Buy · ${formatGen(l.price_wei)} GEN`
-                  )}
-                </button>
-              </div>
+              <Link key={l.token_id} href={`/collections/${l.collection_id}`} className="block">
+                <TokenCard
+                  collectionId={l.collection_id}
+                  edition={Number(l.token_id)}
+                  title={coll?.title}
+                  priceWei={l.price_wei}
+                  priceLabel="Ask"
+                  dimmed={frozen}
+                  footer={
+                    coll && (
+                      <span className={`chip mt-1 ${
+                        coll.risk_state === "CLEAR" ? "chip-clear" :
+                        coll.risk_state === "WATCH" ? "chip-watch" : "chip-frozen"
+                      }`}>
+                        {coll.risk_state}
+                      </span>
+                    )
+                  }
+                  action={{
+                    label: isBuying ? "Buying…" : frozen ? "Frozen" : mine ? "Your listing" : `Buy · ${formatGen(l.price_wei)} GEN`,
+                    onClick: () => buyToken({ tokenId: l.token_id, priceWei: BigInt(l.price_wei) }),
+                    disabled: !isConnected || isBuying || frozen || mine,
+                  }}
+                />
+              </Link>
             );
           })}
         </div>

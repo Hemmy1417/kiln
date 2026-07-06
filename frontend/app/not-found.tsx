@@ -13,7 +13,7 @@ export default function NotFound() {
           <div
             className="w-11 h-11 rounded-sm flex items-center justify-center shrink-0"
             style={{
-              background: "rgba(252, 213, 53, 0.08)",
+              background: "rgba(32, 129, 226, 0.08)",
               border: "1px solid var(--hairline)",
             }}
           >

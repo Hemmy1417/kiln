@@ -37,8 +37,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
           theme="dark"
           toastOptions={{
             style: {
-              background: "#0b0e11",
-              border: "1px solid rgba(252, 213, 53, 0.3)",
+              background: "#0d0e12",
+              border: "1px solid rgba(32, 129, 226, 0.3)",
               color: "#eaecef",
             },
           }}

@@ -127,7 +127,7 @@ export default function CollectionPage() {
 
           {/* Refund CTA for holders of a frozen collection */}
           {frozen && coll.refunds_enabled && myHoldings.length > 0 && (
-            <div className="card p-4 space-y-2" style={{ borderColor: "rgba(246, 70, 93, 0.4)" }}>
+            <div className="card p-4 space-y-2" style={{ borderColor: "rgba(229, 72, 77, 0.4)" }}>
               <div className="text-sm font-semibold" style={{ color: "var(--danger)" }}>
                 Refunds are open — you hold {myHoldings.length} token{myHoldings.length > 1 ? "s" : ""}
               </div>
@@ -273,7 +273,7 @@ function ReportForm({ collectionId, onDone }: { collectionId: string; onDone: ()
   };
 
   return (
-    <div className="card p-5 space-y-4" style={{ borderColor: "rgba(246, 70, 93, 0.35)" }}>
+    <div className="card p-5 space-y-4" style={{ borderColor: "rgba(229, 72, 77, 0.35)" }}>
       <div className="text-sm text-ivory-soft">
         Reporting posts a <span className="mono" style={{ color: "var(--gold-bright)" }}>0.05 GEN bond</span> —
         returned if the panel rules your report valid, forfeited to the protection pool if not.
@@ -298,8 +298,8 @@ function ReportForm({ collectionId, onDone }: { collectionId: string; onDone: ()
           {u.trim() && verdicts[i].status !== "ok" && (
             <div className="flex items-start gap-1.5 px-2.5 py-1.5 rounded-md text-xs"
                  style={verdicts[i].status === "block"
-                   ? { background: "rgba(246, 70, 93, 0.08)", border: "1px solid rgba(246, 70, 93, 0.3)", color: "#f6465d" }
-                   : { background: "rgba(252, 213, 53, 0.08)", border: "1px solid rgba(252, 213, 53, 0.3)", color: "#fcd535" }}>
+                   ? { background: "rgba(229, 72, 77, 0.08)", border: "1px solid rgba(229, 72, 77, 0.3)", color: "#e5484d" }
+                   : { background: "rgba(32, 129, 226, 0.08)", border: "1px solid rgba(32, 129, 226, 0.3)", color: "#2081e2" }}>
               {verdicts[i].status === "block"
                 ? <AlertCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" />
                 : <AlertTriangle className="w-3.5 h-3.5 mt-0.5 shrink-0" />}

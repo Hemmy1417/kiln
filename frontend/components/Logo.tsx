@@ -24,18 +24,18 @@ export function KilnMark({ size = 26 }: { size?: number }) {
       {/* Chamber */}
       <path
         d="M8 34 V18 C8 11 13 6 20 6 C27 6 32 11 32 18 V34 Z"
-        stroke="#fcd535"
+        stroke="#2081e2"
         strokeWidth="1.8"
         strokeLinejoin="round"
-        fill="rgba(252, 213, 53, 0.06)"
+        fill="rgba(32, 129, 226, 0.06)"
       />
       {/* Flame */}
       <path
         d="M20 14 C23 18 25 20.5 25 24 C25 27.3 22.8 29.5 20 29.5 C17.2 29.5 15 27.3 15 24 C15 21.5 16.2 19.8 17.5 18 C17.9 20 18.8 21 20 21.5 C19.2 19 19.2 16.5 20 14 Z"
-        fill="#fcd535"
+        fill="#2081e2"
       />
       {/* Chamber base line */}
-      <line x1="6" y1="34" x2="34" y2="34" stroke="#fcd535" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="6" y1="34" x2="34" y2="34" stroke="#2081e2" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
 }

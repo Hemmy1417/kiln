@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Loader2, Flame, PlusCircle } from "lucide-react";
 import { useCollections } from "@/lib/hooks/useKiln";
 import { formatGen } from "@/lib/utils";
@@ -18,10 +19,22 @@ const RISK_CHIP: Record<string, string> = {
 type Filter = "all" | "minting" | "watch" | "frozen" | "rejected";
 
 export default function LaunchpadPage() {
+  // useSearchParams needs a Suspense boundary in the App Router.
+  return (
+    <Suspense fallback={null}>
+      <LaunchpadInner />
+    </Suspense>
+  );
+}
+
+function LaunchpadInner() {
   const { data: collections, isLoading } = useCollections(50);
   const [filter, setFilter] = useState<Filter>("all");
+  const q = (useSearchParams().get("q") ?? "").trim().toLowerCase();
 
   const list = (collections ?? []).filter((c) => {
+    if (q && !(`${c.title} ${c.category} ${c.description}`.toLowerCase().includes(q)))
+      return false;
     if (filter === "all") return true;
     if (filter === "minting")
       return c.status === "APPROVED" && c.risk_state !== "FROZEN" && c.minted < c.max_supply;
@@ -36,7 +49,9 @@ export default function LaunchpadPage() {
       <div className="flex items-end justify-between flex-wrap gap-4">
         <div>
           <div className="eyebrow mb-1">Adjudicated collections</div>
-          <h1 className="display text-4xl">Launchpad</h1>
+          <h1 className="display text-4xl">
+            {q ? <>Results for “{q}”</> : "Launchpad"}
+          </h1>
         </div>
         <Link href="/submit" className="btn btn-gold">
           <PlusCircle className="w-4 h-4" />
@@ -72,7 +87,7 @@ export default function LaunchpadPage() {
             className="text-xs px-3 py-1.5 rounded-md border transition-colors font-medium"
             style={
               filter === key
-                ? { background: "rgba(252, 213, 53, 0.12)", borderColor: "rgba(252, 213, 53, 0.4)", color: "var(--gold-bright)" }
+                ? { background: "rgba(32, 129, 226, 0.12)", borderColor: "rgba(32, 129, 226, 0.4)", color: "var(--gold-bright)" }
                 : { background: "transparent", borderColor: "var(--hairline)", color: "var(--muted)" }
             }
           >

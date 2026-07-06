@@ -54,7 +54,7 @@ export default function ReportDetailPage() {
       {/* Consequence banner */}
       <div
         className="card-strong p-4 flex items-center gap-3 flex-wrap"
-        style={froze ? { borderColor: "rgba(246, 70, 93, 0.4)" } : undefined}
+        style={froze ? { borderColor: "rgba(229, 72, 77, 0.4)" } : undefined}
       >
         {froze && <Snowflake className="w-5 h-5 shrink-0" style={{ color: "var(--danger)" }} />}
         <span className="text-sm text-ivory-soft">

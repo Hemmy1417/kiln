@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Menu, X, Search } from "lucide-react";
 import { KilnWordmark } from "./Logo";
 import { ConnectButton } from "./ConnectButton";
 
@@ -18,7 +18,15 @@ const links = [
 
 export function Nav() {
   const path = usePathname();
+  const router = useRouter();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const submitSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = query.trim();
+    router.push(q ? `/launchpad?q=${encodeURIComponent(q)}` : "/launchpad");
+  };
 
   // Close the drawer whenever the route changes.
   useEffect(() => {
@@ -47,7 +55,7 @@ export function Nav() {
           borderBottom: "1px solid var(--hairline)",
         }}
       >
-        <nav className="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between gap-4">
+        <nav className="mx-auto max-w-7xl px-5 h-[68px] flex items-center gap-4">
           <Link
             href="/"
             className="hover:opacity-90 transition-opacity shrink-0"
@@ -55,13 +63,28 @@ export function Nav() {
             <KilnWordmark size="sm" />
           </Link>
 
+          {/* OpenSea-style search bar */}
+          <form
+            onSubmit={submitSearch}
+            className="hidden sm:flex items-center flex-1 max-w-md mx-2 gap-2 px-3 h-10 rounded-xl transition-colors focus-within:border-gold-bright"
+            style={{ background: "var(--navy-mid)", border: "1px solid var(--hairline)" }}
+          >
+            <Search className="w-4 h-4 shrink-0 text-muted" />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search collections"
+              className="bg-transparent outline-none text-sm w-full text-ivory placeholder:text-muted"
+            />
+          </form>
+
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-0.5 ml-auto">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="display text-[0.78rem] tracking-[0.18em] uppercase px-3 py-2 transition-colors"
+                className="text-sm font-semibold px-3 py-2 rounded-lg transition-colors hover:bg-white/5"
                 style={{
                   color: isActive(l.href) ? "var(--gold-bright)" : "var(--ivory)",
                 }}
@@ -71,7 +94,7 @@ export function Nav() {
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <ConnectButton />
             {/* Mobile hamburger */}
             <button
@@ -111,7 +134,7 @@ export function Nav() {
             id="mobile-drawer"
             className="md:hidden fixed right-0 top-16 bottom-0 z-40 w-[78%] max-w-[320px] animate-slide-in"
             style={{
-              background: "#0b0e11",
+              background: "#0d0e12",
               borderLeft: "1px solid var(--hairline)",
               boxShadow: "-12px 0 24px rgba(0,0,0,0.6)",
             }}
@@ -135,7 +158,7 @@ export function Nav() {
                           ? "var(--gold-bright)"
                           : "rgba(243, 238, 223, 0.85)",
                         background: active
-                          ? "rgba(252, 213, 53, 0.08)"
+                          ? "rgba(32, 129, 226, 0.08)"
                           : "transparent",
                         borderLeft: active
                           ? "2px solid var(--gold-bright)"

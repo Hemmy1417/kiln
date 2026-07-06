@@ -156,7 +156,7 @@ export default function SubmitPage() {
 
         {hasBlocked && (
           <div className="p-3 rounded-md flex items-start gap-2 text-sm"
-               style={{ background: "rgba(246, 70, 93, 0.08)", border: "1px solid rgba(246, 70, 93, 0.3)" }}>
+               style={{ background: "rgba(229, 72, 77, 0.08)", border: "1px solid rgba(229, 72, 77, 0.3)" }}>
             <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "var(--danger)" }} />
             <span>At least one URL is on the panel's inadmissible list — replace it before submitting.</span>
           </div>
@@ -206,10 +206,10 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
 function EvidencePill({ verdict, url }: { verdict: EvidenceVerdict; url: string }) {
   if (!url.trim()) return null;
   const palette = verdict.status === "ok"
-    ? { bg: "rgba(14, 203, 129, 0.08)", border: "rgba(14, 203, 129, 0.3)", fg: "#0ecb81", Icon: CheckCircle2 }
+    ? { bg: "rgba(52, 199, 123, 0.08)", border: "rgba(52, 199, 123, 0.3)", fg: "#34c77b", Icon: CheckCircle2 }
     : verdict.status === "warn"
-    ? { bg: "rgba(252, 213, 53, 0.08)", border: "rgba(252, 213, 53, 0.3)", fg: "#fcd535", Icon: AlertTriangle }
-    : { bg: "rgba(246, 70, 93, 0.08)",  border: "rgba(246, 70, 93, 0.3)",  fg: "#f6465d", Icon: AlertCircle };
+    ? { bg: "rgba(32, 129, 226, 0.08)", border: "rgba(32, 129, 226, 0.3)", fg: "#2081e2", Icon: AlertTriangle }
+    : { bg: "rgba(229, 72, 77, 0.08)",  border: "rgba(229, 72, 77, 0.3)",  fg: "#e5484d", Icon: AlertCircle };
   const { Icon } = palette;
   return (
     <div className="flex items-start gap-1.5 mt-1.5 px-2.5 py-1.5 rounded-md text-xs"

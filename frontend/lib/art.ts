@@ -27,12 +27,12 @@ function seedFrom(collectionId: string, edition: number): number {
 }
 
 const PALETTES: string[][] = [
-  ["#fcd535", "#0ecb81", "#eaecef"],
-  ["#fcd535", "#f6465d", "#b7bdc6"],
-  ["#0ecb81", "#2dbdb6", "#fcd535"],
-  ["#f6465d", "#fcd535", "#eaecef"],
-  ["#fcd535", "#eaecef", "#707a8a"],
-  ["#2dbdb6", "#fcd535", "#f6465d"],
+  ["#2081e2", "#34c77b", "#eaecef"],
+  ["#2081e2", "#e5484d", "#b7bdc6"],
+  ["#34c77b", "#2dbdb6", "#2081e2"],
+  ["#e5484d", "#f5a623", "#eaecef"],
+  ["#2081e2", "#eaecef", "#707a8a"],
+  ["#f5a623", "#2081e2", "#34c77b"],
 ];
 
 /**

@@ -68,8 +68,8 @@ export function HowTo({
           <span
             className="mono text-[10px] tracking-[0.18em] uppercase px-2 py-1 rounded-sm shrink-0"
             style={{
-              background: "rgba(252, 213, 53, 0.08)",
-              border: "1px solid rgba(252, 213, 53, 0.3)",
+              background: "rgba(32, 129, 226, 0.08)",
+              border: "1px solid rgba(32, 129, 226, 0.3)",
               color: "var(--gold-bright)",
             }}
           >

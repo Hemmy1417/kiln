@@ -34,7 +34,7 @@ export default function PoolPage() {
         </div>
       ) : (
         <>
-          <div className="card p-8 text-center" style={{ borderColor: "rgba(252, 213, 53, 0.35)" }}>
+          <div className="card p-8 text-center" style={{ borderColor: "rgba(32, 129, 226, 0.35)" }}>
             <div className="eyebrow mb-2">Pool balance — live</div>
             <div className="display text-5xl" style={{ color: "var(--gold-bright)" }}>
               {formatGen(stats.refund_pool_wei)} GEN
