@@ -8,6 +8,7 @@ import { KilnWordmark } from "./Logo";
 import { ConnectButton } from "./ConnectButton";
 
 const links = [
+  { href: "/",          label: "Home" },
   { href: "/launchpad", label: "Launchpad" },
   { href: "/market",    label: "Market" },
   { href: "/gallery",   label: "Gallery" },

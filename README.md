@@ -80,7 +80,7 @@ Kiln/
 ├── deploy/deployScript.ts
 ├── gltest.config.yaml
 ├── tests/direct/                   # 20-test direct-mode pytest suite
-└── frontend/                       # Next.js 16 (Turbopack) — Binance dark-financial design
+└── frontend/                       # Next.js 16 (Turbopack) — OpenSea-style dark marketplace design
     ├── app/
     │   ├── page.tsx                # hero + live stats + now-minting strip
     │   ├── launchpad/              # adjudicated collections, filter tabs
