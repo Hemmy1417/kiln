@@ -40,6 +40,18 @@ GUARDRAILS:
 """
 
 
+# Empty EVM interface: paying a wallet is an external message through the
+# chain layer (executed by the IC's ghost contract), NOT a GenVM call —
+# gl.get_contract_at(...).emit_transfer at an EOA errors at finalization
+# and the value is stranded. Proven empirically on Curia round 1.
+@gl.evm.contract_interface
+class _Payee:
+    class View:
+        pass
+    class Write:
+        pass
+
+
 class Kiln(gl.Contract):
     """
     Kiln — the GenLayer-adjudicated NFT launchpad and marketplace.
@@ -132,8 +144,7 @@ class Kiln(gl.Contract):
 
     def _pay(self, to: str, amount_wei: int) -> None:
         if amount_wei > 0:
-            gl.get_contract_at(Address(to)).emit_transfer(
-                value=u256(amount_wei),
+            _Payee(Address(to)).emit_transfer(value=u256(amount_wei),
                 on="finalized",
             )
 
