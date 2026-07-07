@@ -99,13 +99,16 @@ Kiln/
 
 ## Contract
 
-- **Address:** `0xd90dBCA92462f5A17a16316F26a4A9847c559b3a`
+- **Address:** `0x39500183e53d865f883BD59Ee1f4e297754668Df`
+
+> **Payout fix (July 2026).** Wallet payouts are sent as EVM external messages (an empty `@gl.evm.contract_interface` proxy executed by the contract's ghost account). The previous GenVM-call pattern errored at finalization on plain wallets and stranded the value; the contract was redeployed at the address above with the corrected transfer path.
+
 - **Network:** GenLayer Studionet (chainId `61999`, RPC `https://studio.genlayer.com/api`)
 - **Constructor:** no arguments — no protocol owner
 
 Read state:
 ```bash
-genlayer call 0xd90dBCA92462f5A17a16316F26a4A9847c559b3a get_protocol_stats
+genlayer call 0x39500183e53d865f883BD59Ee1f4e297754668Df get_protocol_stats
 ```
 
 ---
