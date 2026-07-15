@@ -158,3 +158,15 @@ npm run dev
 4. **Report.** Anything wrong post-launch → bonded report from the collection page. The panel rules; consequences apply on-chain, no moderators.
 5. **Refunds.** If a collection is FROZEN, holders claim from the collection page — up to mint price, while the pool lasts.
 6. **Audit everything.** `/ledger` for rulings, `/pool` for the money, the explorer link in the footer for every transaction.
+
+---
+
+## Signed writes
+
+Contract writes are signed by the **connected wallet's own EIP-1193 provider**. The
+contract wrapper resolves the injected provider (preferring MetaMask when several
+wallets are installed) and binds it into the genlayer-js client, so every transaction
+is signed by the wallet the user actually picked — never an implicit `window.ethereum`
+fallback that could be the wrong extension. A repository-level test
+(`frontend/tests/signed-write.test.ts`) proves the write path routes
+`eth_sendTransaction` through that provider with the correct `from`.
